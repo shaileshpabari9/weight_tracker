@@ -1,4 +1,4 @@
-package com.example.weight_tracker
+package com.assignment.weighttracker
 
 import io.flutter.embedding.android.FlutterActivity
 
