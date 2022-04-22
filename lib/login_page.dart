@@ -21,7 +21,7 @@ class _SignInState extends State<SignIn> {
         ),
         body: Container(
             padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
-            child: RaisedButton(
+            child: ElevatedButton(
                 child: Text('Sign In anon'),
                 onPressed: () async {
                   dynamic result = await _auth.signInAnon();
@@ -32,7 +32,7 @@ class _SignInState extends State<SignIn> {
                         context,
                         MaterialPageRoute(
                             builder: (context) => const MyHomePage(
-                                  title: '',
+                                  title: 'Weight-Tracker',
                                 )));
                   }
                 })));
