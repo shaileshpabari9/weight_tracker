@@ -8,4 +8,8 @@ class DatabaseService {
     return allWeights
         .add({'weight': weight, 'createdTime': FieldValue.serverTimestamp()});
   }
+
+  deleteWeight(String docId) {
+    return allWeights.doc(docId).delete();
+  }
 }

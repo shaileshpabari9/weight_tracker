@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:weight_tracker/auth.dart';
+import 'package:weight_tracker/services/auth_service.dart';
 import 'package:weight_tracker/home_page.dart';
 
 class SignIn extends StatefulWidget {
