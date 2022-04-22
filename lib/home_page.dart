@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:weight_tracker/services/database_service.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -11,8 +12,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  CollectionReference allWeights =
-      FirebaseFirestore.instance.collection('weights');
+  final DatabaseService databaseservice = DatabaseService();
   late double weight;
   @override
   Widget build(BuildContext context) {
@@ -34,10 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           ElevatedButton(
               onPressed: () async {
-                await allWeights.add({
-                  'weight': weight,
-                  'createdTime': FieldValue.serverTimestamp()
-                }).then((value) {
+                databaseservice.addWeight(weight).then((value) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
                       content: Text('Weight added successfully'),
