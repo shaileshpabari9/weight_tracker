@@ -69,9 +69,10 @@ class _MyHomePageState extends State<MyHomePage> {
                         var createdTime = data['createdTime'] as Timestamp;
                         var docWeight = (data['weight'] + 0.0) as double;
 
-                        return Text(createdTime.toDate().toString() +
-                            '  ' +
-                            docWeight.toString());
+                        return ListTile(
+                          leading: Text(createdTime.toDate().toString()),
+                          title: Text(docWeight.toString() + ' kg'),
+                        );
                       }).toList());
                     }),
               )
