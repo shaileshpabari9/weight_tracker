@@ -2,7 +2,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+import 'package:weight_tracker/login_page.dart';
+import 'package:weight_tracker/services/auth_service.dart';
+import 'package:weight_tracker/home_page.dart';
 import 'package:weight_tracker/services/database_service.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -15,6 +22,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final DatabaseService databaseservice = DatabaseService();
+  final AuthService _auth = AuthService();
 
   late double weight;
 
@@ -66,7 +74,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   });
                 },
                 child: const Text('Submit data')),
-            ElevatedButton(onPressed: () async {}, child: const Text('Logout')),
             Expanded(
                 child: StreamBuilder<QuerySnapshot>(
               stream: FirebaseFirestore.instance
@@ -122,7 +129,19 @@ class _MyHomePageState extends State<MyHomePage> {
                       ]));
                 }).toList());
               },
-            ))
+            )),
+            ElevatedButton(
+              child: const Text('Logout'),
+              onPressed: () async {
+                dynamic result = _auth.signOut;
+                if (result == null) {
+                  print('error signing in');
+                } else {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => SignIn()));
+                }
+              },
+            )
           ]),
     );
   }
