@@ -12,4 +12,10 @@ class DatabaseService {
   deleteWeight(String docId) {
     return allWeights.doc(docId).delete();
   }
+
+  editWeight(double weight, String docId) {
+    return allWeights.doc(docId).update({
+      'weight': weight,
+    });
+  }
 }
